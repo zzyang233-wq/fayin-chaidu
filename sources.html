@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17335f">
+  <meta name="description" content="法音拆读 V1 的数据来源、许可、筛选原则和已知限制。">
+  <title>来源与许可 · 法音拆读</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#sources">跳到来源正文</a>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="返回法音拆读首页"><span class="brand-mark" aria-hidden="true">ɑ̃</span><span><strong>法音拆读</strong><small>French sound, piece by piece</small></span></a>
+    <a class="quiet-link" href="./index.html">返回查询</a>
+  </header>
+
+  <main id="sources" class="document-main">
+    <header class="document-hero">
+      <p class="eyebrow">V1 · 数据可追溯</p>
+      <h1>来源与许可</h1>
+      <p class="document-lead">应用把“可靠的整词发音”和“能够可靠解释拼写”分开处理。没有达到分块门槛的词仍可显示来源 IPA，但不会生成看似合理的规则解释。</p>
+    </header>
+
+    <article class="source-card">
+      <p class="source-role">整词发音、IPA、词形、词性与频率</p>
+      <h2>Lexique 4.00</h2>
+      <p>V1 的全词发音来自 Lexique 4 提供的 phonological representation 与 IPA；应用不从拼写预测整词读音。常用词库也以来源频率为主要选择依据。</p>
+      <dl>
+        <div><dt>作者</dt><dd>Boris New、Christophe Pallier、Gauvain Schalchli、Jessica Bourgin、Manuel Gimenes 等</dd></div>
+        <div><dt>版本</dt><dd>4.00（2026）</dd></div>
+        <div><dt>项目与数据</dt><dd><a href="https://www.lexique.org/" rel="noreferrer">lexique.org</a> · <a href="https://www.lexique.org/databases/Lexique400/Lexique400.tsv" rel="noreferrer">Lexique400.tsv</a></dd></div>
+        <div><dt>许可</dt><dd><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans" rel="noreferrer">CC BY-SA 4.0</a></dd></div>
+      </dl>
+    </article>
+
+    <article class="source-card">
+      <p class="source-role">GRAPHEME–PHONEME 对齐</p>
+      <h2>Lexique-Infra 1.11</h2>
+      <p>Lexique-Infra 提供逐词 grapheme 与 phoneme association。应用只采用能重新组成当前词形、并与 Lexique 4 全词发音一致的结果。</p>
+      <dl>
+        <div><dt>作者</dt><dd>Manuel Gimenes、Cyril Perret、Boris New</dd></div>
+        <div><dt>版本</dt><dd>1.11</dd></div>
+        <div><dt>项目与下载</dt><dd><a href="https://www.lexique.org/?page_id=331" rel="noreferrer">项目页</a> · <a href="https://osf.io/xenas/download" rel="noreferrer">OSF 版本包</a></dd></div>
+        <div><dt>许可</dt><dd><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans" rel="noreferrer">CC BY-SA 4.0</a></dd></div>
+      </dl>
+    </article>
+
+    <article class="source-card">
+      <p class="source-role">规则内容与疑难核验</p>
+      <h2>人工维护的规则资料</h2>
+      <p>Quick Rule 与 Detailed Rule 是基于可靠资料重新组织的中文短说明，不由查询时的模型自由生成。每条详细规则底部保留逐条 source refs。</p>
+      <ul>
+        <li><a href="https://research.jyu.fi/phonfr/index.html" rel="noreferrer">Jean-Michel Kalmbach，《Guide de prononciation française》</a>：规则结构、音位与拼写对应。</li>
+        <li>Éduscol：基础、高频且值得初学者优先学习的对应。</li>
+        <li>TV5MONDE Apprendre le français：面向 FLE 初学者的表达参考。</li>
+        <li>Académie française、CNRTL / TLFi：有争议或词汇性例外的核验。</li>
+      </ul>
+    </article>
+
+    <article class="source-card">
+      <p class="source-role">可选真人录音</p>
+      <h2>Wikimedia Commons / Lingua Libre</h2>
+      <p>音频不是统一许可的数据包。每个文件分别保存文件页、作者或 speaker、许可、目标读音和审核结果；只有元数据完整，并经人工听审为合适的法国标准法语录音后才会显示。缺失音频时不会用 TTS 替代。</p>
+      <dl>
+        <div><dt>来源</dt><dd><a href="https://commons.wikimedia.org/" rel="noreferrer">Wikimedia Commons</a> · <a href="https://lingualibre.org/" rel="noreferrer">Lingua Libre</a></dd></div>
+        <div><dt>许可处理</dt><dd>逐文件履约；可能包括 CC0、CC BY、CC BY-SA 或明确的公有领域声明，以各 Commons 文件页为准。</dd></div>
+        <div><dt>离线范围</dt><dd>外部音频不属于 PWA 的离线词库缓存。</dd></div>
+      </dl>
+    </article>
+
+    <section class="method-note">
+      <h2>版本兼容与保守发布</h2>
+      <p>Lexique-Infra 基于 Lexique 3.83，而整词主来源是 Lexique 4.00。版本缺失、不一致、重组冲突或对齐歧义不会静默修补：IPA 仍可在全词来源可靠时显示，但 segmentation 与 rule links 会被隐藏。正字法查询保留重音，只接受词库明确记录的 <span lang="fr">œ ↔ oe</span> alias。</p>
+      <p>从 Lexique 与 Lexique-Infra 派生并随 V1 发布的词条、IPA 和对齐数据按 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans" rel="noreferrer">CC BY-SA 4.0</a> 管理。应用代码与数据包是两个许可层；仓库当前尚未为软件代码另行声明许可，公开再分发代码前需完成许可选择与复核。本说明是工程记录，不构成法律意见。</p>
+    </section>
+
+    <a class="back-home" href="./index.html">← 返回单词查询</a>
+  </main>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17335f">
+  <meta name="description" content="查询现代法国标准法语的来源发音、IPA、拼写—声音分块与可靠发音规则。">
+  <title>法音拆读</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#result">跳到查询结果</a>
+
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="法音拆读首页">
+      <span class="brand-mark" aria-hidden="true">ɑ̃</span>
+      <span><strong>法音拆读</strong><small>French sound, piece by piece</small></span>
+    </a>
+    <nav class="header-actions" aria-label="应用导航">
+      <span class="offline-status" id="offline-status" aria-live="polite">检查离线能力</span>
+      <button class="quiet-button" id="install-button" type="button">安装 / 添加</button>
+      <button class="quiet-button" id="open-index" type="button">浏览词库</button>
+      <a class="quiet-link" href="sources.html">来源与许可</a>
+    </nav>
+  </header>
+
+  <main>
+    <aside class="install-hint" id="install-hint" hidden aria-label="安装提示">
+      <p>经常查词？可以添加到手机主屏幕，像应用一样打开。</p>
+      <button type="button" id="install-hint-open">查看方法</button>
+      <button type="button" id="install-hint-dismiss" aria-label="30 天内不再提醒">暂不提醒</button>
+    </aside>
+    <section class="lookup-hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">怎么读 · 为什么这样读</p>
+        <h1 id="page-title">把一个法语词<br>沿着声音拆开。</h1>
+        <p class="hero-note">发音取自词汇数据库，不现场猜测。证据足够时才显示分块和规则；否则只保留可靠的 IPA。</p>
+      </div>
+
+      <div class="lookup-panel">
+        <form id="lookup-form" class="lookup-form" role="search">
+          <label for="word-input">输入法语单词</label>
+          <div class="search-line">
+            <div class="combobox-shell">
+              <input id="word-input" type="search" autocomplete="off" autocapitalize="none" spellcheck="false"
+                placeholder="例如 beaucoup" aria-describedby="search-help" aria-autocomplete="list"
+                aria-controls="search-suggestions" aria-expanded="false" role="combobox">
+              <div id="search-suggestions" class="search-suggestions" role="listbox" hidden></div>
+            </div>
+            <button class="search-button" type="submit">拆开看</button>
+          </div>
+          <p id="search-help">严格匹配法语拼写；只额外接受词库明确记录的 œ / oe 形式。按 <kbd>/</kbd> 可回到搜索框。</p>
+          <div class="sample-words" aria-label="示例词">
+            <span>试一试</span>
+            <button type="button" data-word="beaucoup">beaucoup</button>
+            <button type="button" data-word="oiseau">oiseau</button>
+            <button type="button" data-word="question">question</button>
+            <button type="button" data-word="femme">femme</button>
+            <button type="button" data-word="est">est</button>
+          </div>
+        </form>
+
+        <section class="recent-queries" id="recent-queries" aria-labelledby="recent-title" hidden>
+          <div class="recent-heading">
+            <h2 id="recent-title">最近查询</h2>
+            <button type="button" id="clear-recent">清除</button>
+          </div>
+          <div id="recent-list" class="recent-list"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="audit-strip" aria-label="正式词库摘要">
+      <p><strong id="stat-pronunciation">—</strong><span>词形</span></p>
+      <p><strong id="stat-alignment">—</strong><span>可靠分块</span></p>
+      <p><strong id="stat-manual">—</strong><span>规则链接覆盖</span></p>
+      <p><strong id="stat-audio">审核制</strong><span>真人录音</span></p>
+    </section>
+
+    <section class="legend" aria-label="片段状态说明">
+      <span><i class="legend-dot simple"></i>直接对应</span>
+      <span><i class="legend-dot rule"></i>值得学习的规则</span>
+      <span><i class="legend-dot silent"></i>静音</span>
+      <span><i class="legend-dot special"></i>特殊读法</span>
+      <span><i class="legend-dot uncertain"></i>证据不足</span>
+    </section>
+
+    <section id="result" class="result-shell" aria-live="polite" aria-busy="true">
+      <div class="loading-state"><span class="loading-mark" aria-hidden="true"></span><p>正在载入词库索引…</p></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>全词发音来自 Lexique 4；可靠分块优先来自 Lexique-Infra。真人录音只有在许可、署名、读音和口音均通过人工审核后才会出现。</p>
+    <p><a href="sources.html">查看数据来源、许可与方法限制</a></p>
+  </footer>
+
+  <dialog id="rule-dialog" class="sheet-dialog" aria-labelledby="rule-dialog-title">
+    <div class="dialog-bar">
+      <div><p class="eyebrow">详细规则</p><p id="rule-dialog-context" class="dialog-context">返回当前单词</p></div>
+      <button type="button" class="rule-back-button" data-close-dialog><span aria-hidden="true">←</span> 返回 <strong id="rule-return-word" lang="fr">单词</strong></button>
+    </div>
+    <div id="rule-dialog-content"></div>
+  </dialog>
+
+  <dialog id="word-index-dialog" class="index-dialog" aria-labelledby="index-title">
+    <div class="dialog-bar">
+      <div><p class="eyebrow">正式 V1 词库</p><h2 id="index-title">浏览词形</h2></div>
+      <button type="button" class="icon-button" data-close-dialog aria-label="关闭词库">×</button>
+    </div>
+    <label class="index-search-label" for="index-search">筛选词库</label>
+    <input id="index-search" class="index-search" type="search" autocomplete="off" placeholder="输入字母筛选">
+    <p id="index-count" class="index-count" aria-live="polite"></p>
+    <div id="word-index-list" class="word-index-list"></div>
+    <button type="button" id="index-more" class="index-more" hidden>显示更多</button>
+  </dialog>
+
+  <noscript>此查询页需要 JavaScript 读取本地词库数据。</noscript>
+  <dialog id="install-dialog" class="sheet-dialog install-dialog" aria-labelledby="install-title">
+    <div class="dialog-bar"><h2 id="install-title">添加到主屏幕</h2><button type="button" class="quiet-button" data-close-dialog>返回查询</button></div>
+    <div class="install-content">
+      <p id="install-platform-note"></p>
+      <button class="search-button" id="native-install" type="button" hidden>安装法音拆读</button>
+      <section><h3>iPhone / iPad</h3><p>用 Safari 打开本站，点分享按钮 →「添加到主屏幕」→「添加」。如果出现「作为网页 App 打开」，保持开启。</p></section>
+      <section><h3>Android</h3><p>用 Chrome 打开本站，点右上角 ⋮ →「安装应用」或「添加到主屏幕」。不同版本的菜单名称可能略有不同。</p></section>
+      <section><h3>电脑</h3><p>在 Edge / Chrome 中，可使用地址栏安装图标或浏览器菜单安装。也可以把网址加入收藏夹。</p></section>
+      <section><h3>离线与更新</h3><p>首次联网打开后，请等待页面提示「完整词库可离线使用」。之后可离线搜索和查看规则。浏览器清理网站数据或系统回收存储后，需要重新联网缓存。真人音频不包含在离线缓存内。</p><p>联网重新打开即可检查新版本；更新下载期间请保持页面打开，完成后重新打开一次。</p></section>
+      <p class="install-note">安装不是使用的前提。不安装也能正常查询；本提示关闭后 30 天内不再主动出现。</p>
+    </div>
+  </dialog>
+  <script src="app.js?v=20260916-1"></script>
+  <script src="install.js?v=20260916-1"></script>
+</body>
+</html>

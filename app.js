@@ -210,11 +210,14 @@ function renderSegment(segment) {
 }
 
 function renderAudio(audio, pronunciation) {
-  if (audio.review_status !== 'approved' || audio.accent_review !== 'standard_france_approved') return '';
-  if (audio.pronunciation_id !== pronunciation.pronunciation_id || audio.heard_ipa !== pronunciation.ipa) return '';
-  return `<section class="audio-block" aria-label="真人录音">
-    <audio controls preload="none" src="${safeUrl(audio.file_url)}"></audio>
-    <p>录音：${escapeHtml(audio.speaker || audio.author)} · ${escapeHtml(audio.license_id)} ·
+  if (audio.review_status !== 'approved' || audio.approval_policy !== 'approved_speaker_pool_v1') return '';
+  if (!['A', 'B'].includes(audio.audit_grade)) return '';
+  if (audio.pronunciation_id !== pronunciation.pronunciation_id || audio.target_ipa !== pronunciation.ipa) return '';
+  if (!/^https:\/\/upload\.wikimedia\.org\//i.test(audio.file_url || '')) return '';
+  return `<section class="audio-block" aria-label="真人发音">
+    <div class="audio-label"><strong>真人发音</strong><span>${escapeHtml(audio.audit_grade)} 级 speaker</span></div>
+    <audio controls playsinline preload="none" src="${safeUrl(audio.file_url)}" aria-label="${escapeHtml(pronunciation.ipa)} 的真人发音"></audio>
+    <p>${escapeHtml(audio.speaker || audio.attribution)} · ${escapeHtml(audio.license_id)} ·
       <a href="${safeUrl(audio.commons_page)}" target="_blank" rel="noreferrer">Commons 来源页</a></p>
   </section>`;
 }
@@ -345,6 +348,7 @@ function renderWord(word) {
       <div><div class="word-meta">${statusBadge(displayedStatus)}<span>${escapeHtml(pos)}${pronunciation.pos ? ` · ${escapeHtml(pronunciation.pos)}` : ''}</span></div>
         <h2 lang="fr">${escapeHtml(word.orthography)}</h2>
         <p class="ipa" aria-label="国际音标 ${escapeHtml(pronunciation.ipa)}">/${escapeHtml(pronunciation.ipa)}/</p>
+        ${audio}
       </div>
       <button type="button" class="copy-link" data-copy-link>复制查询链接</button>
     </header>
@@ -355,7 +359,6 @@ function renderWord(word) {
         <div class="section-heading"><div><p class="eyebrow">拼写与声音</p><h3 id="alignment-title">逐块对齐</h3></div><p>上排是拼写，下排是对应音。蓝色块可打开规则。</p></div>
         <div class="segments" role="list">${(pronunciation.segments || []).map(renderSegment).join('')}</div>
       </section>${renderQuickRules(pronunciation)}` : ''}
-      ${audio}
       ${renderEvidence(word, pronunciation)}
     </div>
   </article>`;

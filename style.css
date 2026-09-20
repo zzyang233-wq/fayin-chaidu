@@ -321,9 +321,12 @@ button.segment { appearance: none; cursor: pointer; }
 .rule-cue { position: absolute; inset: auto 0 0; transform: translateY(100%); padding: 0.28rem; background: var(--rule-blue); color: white; font-size: 0.62rem; transition: transform 160ms ease; }
 .segment.rule:hover .rule-cue, .segment.rule:focus-visible .rule-cue, .segment.silent:hover .rule-cue, .segment.silent:focus-visible .rule-cue { transform: translateY(0); }
 
-.audio-block { margin: 0 clamp(1.6rem, 4vw, 3rem) 2rem; padding: 1rem; border: 1px solid var(--hairline); background: var(--paper); }
+.audio-block { width: min(31rem, 100%); margin-top: 1rem; padding: 0.85rem; border: 1px solid var(--hairline); border-radius: 0.45rem; background: var(--paper); }
 .audio-block audio { width: 100%; }
 .audio-block p { margin: 0.5rem 0 0; color: var(--muted); font-size: 0.75rem; }
+.audio-label { display: flex; align-items: baseline; justify-content: space-between; gap: 0.8rem; margin-bottom: 0.55rem; }
+.audio-label strong { color: var(--ink); font-size: 0.82rem; }
+.audio-label span { color: var(--muted); font-size: 0.68rem; }
 
 .quick-rules { padding: 0 clamp(1.6rem, 4vw, 3rem) clamp(2.2rem, 5vw, 3.8rem); }
 .quick-rules-heading { margin-bottom: 1.2rem; }
@@ -457,6 +460,7 @@ noscript { display: block; padding: 1rem; background: var(--danger-soft); color:
   body { background-size: 100% 1.55rem; }
   .site-header, main, footer { width: min(100% - 1.5rem, 1180px); }
   .site-header { min-height: 5.4rem; }
+  .audio-block { width: 100%; }
   .brand small { display: none; }
   .quiet-button { padding: 0.5rem 0.65rem; font-size: 0.75rem; }
   .lookup-hero { min-height: 0; padding: 2.8rem 0 2.4rem; }

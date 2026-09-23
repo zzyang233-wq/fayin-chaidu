@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v1-20260923-gloss-1';
+const CACHE_VERSION = 'v1-20260923-gloss-2';
 const SHELL_CACHE = `fayin-chaidu-shell-${CACHE_VERSION}`;
 const DATA_CACHE = `fayin-chaidu-data-${CACHE_VERSION}`;
 const APP_SHELL = [
@@ -6,16 +6,16 @@ const APP_SHELL = [
   './index.html',
   './offline.html',
   './sources.html',
-  './style.css?v=20260923-gloss-1',
-  './app.js?v=20260923-gloss-1',
-  './install.js?v=20260923-gloss-1',
+  './style.css?v=20260923-gloss-2',
+  './app.js?v=20260923-gloss-2',
+  './install.js?v=20260923-gloss-2',
   './manifest.webmanifest',
   './icon.svg',
   './icon-192.png',
   './icon-512.png',
   './icon-180.png',
-  './data/catalog-meta.json?v=20260923-gloss-1',
-  './data/search-index.json?v=20260923-gloss-1',
+  './data/catalog-meta.json?v=20260923-gloss-2',
+  './data/search-index.json?v=20260923-gloss-2',
 ];
 
 let offlinePreparation = null;
@@ -79,7 +79,7 @@ function prepareOfflineDataset() {
   if (offlinePreparation) return offlinePreparation;
   offlinePreparation = (async () => {
     try {
-      const meta = await cachedJson('./data/catalog-meta.json?v=20260923-gloss-1');
+      const meta = await cachedJson('./data/catalog-meta.json?v=20260923-gloss-2');
       const urls = discoverChunkUrls(meta);
       const cache = await caches.open(DATA_CACHE);
       let done = 0;

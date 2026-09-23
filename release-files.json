@@ -9,7 +9,7 @@
                   },
                   {
                       "path":  "app.js",
-                      "sha256":  "34f2e095ba9e61204a8d41d1efe65a90383631945accccfa3626c824554fbb5f",
+                      "sha256":  "5864c148d73c148c3e2ec3ca88fffcd8094c66f8a746ecb30295a4cabb8a95cc",
                       "size_bytes":  38884
                   },
                   {
@@ -299,7 +299,7 @@
                   },
                   {
                       "path":  "index.html",
-                      "sha256":  "fcedf3ee8e6fdae0768ea7797cea363943088ea7e2237c3d0c25aef6b9f93f55",
+                      "sha256":  "5d466659c11aaa44d927efe08a30f1effa174812266d39f1c1209b52ba59d9f9",
                       "size_bytes":  8297
                   },
                   {
@@ -324,12 +324,12 @@
                   },
                   {
                       "path":  "service-worker.js",
-                      "sha256":  "702005ec3e37564629d3dd17438fdd3fd2a085d8acc3ef1e6be27919d06bf173",
+                      "sha256":  "991128b1061aa7e6056472979d77ec30a7219ce88ed1ce125aac62b7b4988906",
                       "size_bytes":  5370
                   },
                   {
                       "path":  "sources.html",
-                      "sha256":  "9c5ebc5bd6d690b48a8f6b63914e80f88ccfac95429f0150887acfe647f4a5db",
+                      "sha256":  "d6a1adcd03858a63103239a07bb238aa667be9a8e3b64bd1f62c082a6e219ec3",
                       "size_bytes":  6972
                   },
                   {

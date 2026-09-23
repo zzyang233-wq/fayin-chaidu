@@ -1,6 +1,6 @@
 const DATA_ROOT = 'data/';
-const META_URL = 'data/catalog-meta.json?v=20260923-gloss-1';
-const SEARCH_INDEX_URL = 'data/search-index.json?v=20260923-gloss-1';
+const META_URL = 'data/catalog-meta.json?v=20260923-gloss-2';
+const SEARCH_INDEX_URL = 'data/search-index.json?v=20260923-gloss-2';
 const RECENT_STORAGE_KEY = 'fayin-chaidu:recent-v1';
 const RECENT_LIMIT = 12;
 const SUGGESTION_LIMIT = 8;
@@ -776,7 +776,7 @@ if ('serviceWorker' in navigator) {
     updateConnectionStatus();
   });
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('service-worker.js?v=20260923-gloss-1')
+    navigator.serviceWorker.register('service-worker.js?v=20260923-gloss-2')
       .then(() => navigator.serviceWorker.ready)
       .then(registration => {
         state.shellReady = true;

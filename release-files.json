@@ -9,8 +9,8 @@
                   },
                   {
                       "path":  "app.js",
-                      "sha256":  "ca11032bba5eb577572bdb3753e053570c461e28f3a6734f2cb8eed5f46512a5",
-                      "size_bytes":  38827
+                      "sha256":  "34f2e095ba9e61204a8d41d1efe65a90383631945accccfa3626c824554fbb5f",
+                      "size_bytes":  38884
                   },
                   {
                       "path":  "data/catalog-meta.json",
@@ -324,8 +324,8 @@
                   },
                   {
                       "path":  "service-worker.js",
-                      "sha256":  "bb1dea74ff81c222ae9e3ccb60dee8b5906b6d173c593cbe0d71bad728d93d7e",
-                      "size_bytes":  5313
+                      "sha256":  "702005ec3e37564629d3dd17438fdd3fd2a085d8acc3ef1e6be27919d06bf173",
+                      "size_bytes":  5370
                   },
                   {
                       "path":  "sources.html",

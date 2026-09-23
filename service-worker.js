@@ -14,8 +14,8 @@ const APP_SHELL = [
   './icon-192.png',
   './icon-512.png',
   './icon-180.png',
-  './data/catalog-meta.json',
-  './data/search-index.json',
+  './data/catalog-meta.json?v=20260923-gloss-1',
+  './data/search-index.json?v=20260923-gloss-1',
 ];
 
 let offlinePreparation = null;
@@ -79,7 +79,7 @@ function prepareOfflineDataset() {
   if (offlinePreparation) return offlinePreparation;
   offlinePreparation = (async () => {
     try {
-      const meta = await cachedJson('./data/catalog-meta.json');
+      const meta = await cachedJson('./data/catalog-meta.json?v=20260923-gloss-1');
       const urls = discoverChunkUrls(meta);
       const cache = await caches.open(DATA_CACHE);
       let done = 0;

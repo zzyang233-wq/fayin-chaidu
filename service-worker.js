@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v1-20260920-audio-1';
+const CACHE_VERSION = 'v1-20260923-audio-group-1';
 const SHELL_CACHE = `fayin-chaidu-shell-${CACHE_VERSION}`;
 const DATA_CACHE = `fayin-chaidu-data-${CACHE_VERSION}`;
 const APP_SHELL = [
@@ -7,8 +7,8 @@ const APP_SHELL = [
   './offline.html',
   './sources.html',
   './style.css',
-  './app.js?v=20260920-audio-1',
-  './install.js?v=20260920-audio-1',
+  './app.js?v=20260923-audio-group-1',
+  './install.js?v=20260923-audio-group-1',
   './manifest.webmanifest',
   './icon.svg',
   './icon-192.png',

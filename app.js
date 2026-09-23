@@ -319,6 +319,17 @@ function pronunciationNotice(word, pronunciation) {
   return `<div class="data-warning" role="note"><strong>全词发音有可靠来源，但暂不解释拼写分块。</strong><span>当前 grapheme–phoneme 对齐没有达到发布门槛，因此这里只显示 IPA，不猜分块或规则。</span></div>`;
 }
 
+function renderQuickGloss(word, pronunciation) {
+  const pairs = new Set((pronunciation.source?.records || [])
+    .map(record => `${record.lemma || ''}\u0000${record.pos || ''}`));
+  const entries = (word.lexical_entries || []).filter(entry =>
+    pairs.has(`${entry.lemma}\u0000${entry.pos}`) && Array.isArray(entry.glosses) && entry.glosses.length);
+  if (!entries.length) return '';
+  return `<div class="quick-gloss" aria-label="简短中文释义">${entries.map(entry =>
+    `<span>${entries.length > 1 ? `<small lang="fr">${escapeHtml(entry.lemma)} · ${escapeHtml(POS_LABELS[entry.pos] || entry.pos)}</small>` : ''}${entry.glosses.map(escapeHtml).join('；')}</span>`
+  ).join('<span class="gloss-separator" aria-hidden="true">·</span>')}</div>`;
+}
+
 function renderWord(word) {
   if (word.status === 'not_found') return renderMissingQuery(word.orthography);
   const pronunciations = (word.pronunciations || []).filter(item => item.ipa);
@@ -347,6 +358,7 @@ function renderWord(word) {
     <header class="word-heading">
       <div><div class="word-meta">${statusBadge(displayedStatus)}<span>${escapeHtml(pos)}${pronunciation.pos ? ` · ${escapeHtml(pronunciation.pos)}` : ''}</span></div>
         <h2 lang="fr">${escapeHtml(word.orthography)}</h2>
+        ${renderQuickGloss(word, pronunciation)}
         <p class="ipa" aria-label="国际音标 ${escapeHtml(pronunciation.ipa)}">/${escapeHtml(pronunciation.ipa)}/</p>
         ${audio}
       </div>

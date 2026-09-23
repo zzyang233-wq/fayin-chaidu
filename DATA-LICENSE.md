@@ -25,6 +25,16 @@ Lexique 4 提供词形、全词 phonological representation、IPA、lemma、词�
 
 Lexique-Infra 提供 grapheme 与 phoneme association。它基于 Lexique 3.83，因此应用只发布能重新组成当前词形与 Lexique 4 全词发音的对应；版本不匹配、缺失或歧义会保留为不可解释状态。
 
+## 简短中文释义：中文维基词典 / Wiktextract
+
+- 原始内容：[中文维基词典](https://zh.wiktionary.org/)，逐词来源页保存在 `data/v1/gloss_entries.json`。
+- 机器提取：[Kaikki 中文维基词典原始 Wiktextract JSONL](https://kaikki.org/zhwiktionary/rawdata.html)，使用 2026-09-01 的中文维基词典 dump；不使用 Kaikki 的按语言后处理版，因为该版说明还合并了其他来源。
+- 上游压缩文件 SHA-256：`41151b5057b6ef8f6b403c4328134e94ce9b72aae8bdf7f069038f624e2db1ea`。
+- 中文维基词典文本许可：[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans)，并提供 [GFDL](https://zh.wiktionary.org/wiki/Wiktionary:%E7%89%88%E6%9D%83%E4%BF%A1%E6%81%AF)；本项目按 CC BY-SA 4.0 再分发摘取的简短释义。
+- 变更：仅保留严格词元＋词性可匹配的 1–2 条短释义，繁体转简体，并为屈折词形继承词元释义。没有可靠匹配时留空，不由模型补译。简繁转换使用 `opencc-python-reimplemented` 0.1.7（Apache-2.0）。
+
+`data/v1/gloss_source_subset.jsonl` 保留参与匹配的原始 senses、来源文件行号及原始行 SHA-256；`reports/gloss_audit.csv` 逐 lexical entry 记录发布、缺失或待复核状态。释义与 Lexique 发音数据分别溯源，不表示中文维基词典验证过本项目的 IPA 或法语词性。
+
 ## 再分发说明
 
 从上述数据派生并随 V1 发布的词条和对齐数据应遵守 CC BY-SA 4.0 的署名与相同方式共享条件。规则中文说明是本项目基于逐条来源引用重新组织的内容；具体引用保存在 `data/rule_content.json`。
